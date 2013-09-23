@@ -80,8 +80,10 @@ int16_t main(void) {
 
     val1 = 0;
     val2 = 0;
-    pin_digitalOut(&D[2],&D[3]); //define servo output pins
-    oc_servo(&oc1, &oc2, &(D[2],&D[3]), &timer1, 20e-3f, 500e-6f, 2200e-6f, 0); /*call the oc_servo function as outlined in the course documentation packet
+    pin_digitalOut(&D[2]); //define servo output pins
+    pin_digitalOut(&D[3]);
+    oc_servo(&oc1, &(D[2]), &timer1, 20e-3f, 500e-6f, 2200e-6f, 0); 
+    oc_servo(&oc2, &(D[3]), &timer3, 20e-3f, 500e-6f, 2200e-6f, 0); /*call the oc_servo function as outlined in the course documentation packet
             (specify which OC peripheral, use a timer, define the period of the control signal, define the min and max values of the PWM, initial position)
             Values for the PWM signal were taken from servo spec sheet*/
 

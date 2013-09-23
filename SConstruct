@@ -5,7 +5,7 @@ env = Environment(PIC = '24FJ128GB206',
                   PROGSUFFIX = '.elf', 
                   CFLAGS = '-g -omf=elf -x c -mcpu=$PIC', 
                   LINKFLAGS = '-omf=elf -mcpu=$PIC -Wl,--script="app_p24FJ128GB206.gld"', 
-                  CPPPATH = '../lib')
+                  CPPPATH = '../elecanisms-master/lib')
 
 env.PrependENVPath('PATH', 'C:\\Program Files (x86)\\Microchip\\xc16\\v1.11\\bin')
 bin2hex = Builder(action = 'xc16-bin2hex $SOURCE -omf=elf',
@@ -20,7 +20,10 @@ env.Append(BUILDERS = {'List' : list})
 env.Program('hellousb', ['hellousb.c',
                          'descriptors.c', 
                          'usb.c', 
-                         '../lib/pin.c', 
-                         '../lib/uart.c'])
+                         '../elecanisms-master/lib/pin.c', 
+                         '../elecanisms-master/lib/uart.c',
+                         '../elecanisms-master/lib/timer.c',
+                         '../elecanisms-master/lib/ui.c',
+                         '../elecanisms-master/lib/oc.c'])
 env.Hex('hellousb')
 env.List('hellousb')
